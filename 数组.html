@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组新特性</title>
+</head>
+
+<body>
+    <script>
+        let arr = [12, 31, 24]
+
+        let score = [19, 32, 99, 79]
+
+        let result = score.map(item => item >= 60 ? '及格' : '不及格')
+
+        let result2 = arr.reduce(function(tmp, item, index){
+            if (index != arr.length - 1) {
+                return tmp+item
+            } else {
+                return (tmp+item)/arr.length;
+            }
+        })
+
+        console.log(result2)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "启动 Chrome 并打开 localhost",
+            // "url": "${workspaceFolder}", //本地文件的方式打开
+            "url": "http://test.xyz/js/",   //本地配置的Apache服务器路径
+            "cwd": "${workspaceRoot}",      //运行是程序的工作目录 表示当前的工作区
+            "webRoot": "${workspaceFolder}" //
+        }
+    ]
+}
