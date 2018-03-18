@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createPromise(url) {
+            return new Promise(function (resolve, reject) {
+                $.ajax({
+                    url,
+                    dataType: "json",
+                    success(res) {
+                        resolve(res)
+                    },
+                    error(e) {
+                        reject(e)
+                    }
+                })
+            })
+        }
+
+        // let p1 = createPromise("data.json")
+        // let p2 = createPromise("data.txt")
+
+        Promise.all([
+            createPromise("data.json"),
+            createPromise('data.txt')
+        ]).then((res) => {
+            let [json, arr] = res
+            alert(JSON.stringify(json))
+            alert(arr)
+            console.log('all success', res)
+        }, (e) => {
+            console.log('at lest one of error')
+            alert('at lest one of error')
+        })
+    </script>
+</body>
+
+</html>

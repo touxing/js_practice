@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let json = {"a": 12, "b": "abc"}
+
+        // alert(JSON.stringify(json));
+        console.log(json)
+
+        let json2 = '{"name": "suitor", "age": 18}'
+
+        console.log(json2)
+        console.log(JSON.parse(json2))
+        console.log(typeof(json2))
+
+        let json3 = {
+            a: "json.show",
+            show(){
+                console.log(this.a)
+            }
+        }
+
+        json3.show()
+
+    </script>
+</body>
+</html>

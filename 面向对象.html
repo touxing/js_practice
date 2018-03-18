@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原来的面向对象写法
+        /*function User(name, pass) {
+            this.name = name
+            this.pass = pass
+        }
+
+        User.prototype.showName = function(){
+            alert(this.name)
+        }
+
+        User.prototype.showPass = function(){
+            alert(this.pass)
+        }
+
+        let u1 = new User('hotsuitor', '123456')
+
+        u1.showName()
+        u1.showPass()
+        */
+        // ES6写法
+        class User {
+            constructor(name, pass) {
+                this.name = name
+                this.pass = pass
+            }
+
+            showName() {
+                alert(this.name)
+            }
+
+            showPass() {
+                alert(this.pass)
+            }
+        }
+
+        // let user2 = new User('suitor', '223313')
+
+        class VipUser extends User {
+            constructor(name, pass, level) {
+                super(name, pass)
+                this.level = level
+            }
+
+            showLevel() {
+                alert(this.level)
+            }
+        }
+
+        let vipuser = new VipUser('vipUser', '12345', 5)
+
+        vipuser.showName()
+        vipuser.showLevel()
+
+
+    </script>
+</body>
+
+</html>

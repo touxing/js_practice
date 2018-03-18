@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/swiper.css">
+
+    <script src="./js/swiper.js"></script>
+    <style>
+        .swiper-container {
+            width: 600px;
+            height: 410px;
+        }
+
+        .swiper-wrapper {
+            /* background: chocolate; */
+            /* background: peru; */
+        }
+
+        .swiper-slide {
+            text-align: center;
+            color: #ffffff;
+            font-size: 50px;
+            width: 150px;
+            height: 150px;
+            vertical-align: center;
+            background-color: mediumturquoise;
+        }
+
+
+        .swiper-slide:nth-child(even) {
+            background-color: mediumturquoise;
+        }
+
+        .swiper-slide:nth-child(odd) {
+            background: rgb(81, 154, 223);
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: true,
+        loop: true,
+
+        slidesPerView: 2,
+        slidesPerColumn: 2,
+        spaceBetween: 30,
+
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        }
+    })
+</script>
