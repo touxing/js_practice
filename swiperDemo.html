@@ -6,86 +6,295 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/swiper.css">
-
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script src="./js/swiper.js"></script>
     <style>
+        body {
+            background-image: url('./images/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* 拉伸 */
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+        }
+
         .swiper-container {
+            margin-top: 50px;
             width: 600px;
-            height: 410px;
+            height: 600px;
         }
 
         .swiper-wrapper {
-            /* background: chocolate; */
-            /* background: peru; */
+            position: relative;
         }
 
         .swiper-slide {
-            text-align: center;
+            position: relative;
+            /* text-align: center; */
             color: #ffffff;
             font-size: 50px;
             width: 150px;
-            height: 150px;
-            vertical-align: center;
-            background-color: mediumturquoise;
+            height: 222px;
+            /* vertical-align: center; */
+            bottom: 20px;
+            top: 30px;
         }
 
-
-        .swiper-slide:nth-child(even) {
-            background-color: mediumturquoise;
+        .swiper-slide .img-content {
+            position: relative;
+            font-size: 14px;
+            color: #ffffff;
+            height: 230px;
+            /* top: 10px;
+            bottom: 0; */
         }
 
-        .swiper-slide:nth-child(odd) {
-            background: rgb(81, 154, 223);
+        .swiper-slide .img-title {
+            position: absolute;
+            display: flex;
+            width: 290px;
+            padding: 8px 0;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, .5);
+            bottom: 0;
+        }
+
+        .swiper-slide img {
+            width: 290px;
+            /* 宽度限制 */
+            height: 100%;
+        }
+
+        .swiper-slide span {
+            font-size: 14px;
+            left: 5px;
+            padding: 2px 23px;
+        }
+
+        .swiper-slide .img-content label {
+            /* background-color: rgba(221, 208, 158, 0.5); */
+            padding: 0 3px;
+            /* 上  左右 下 */
+            margin-right: 10px;
+            border-radius: 15%;
+            border: 1px solid #858fa6;
+            background: -webkit-gradient(linear, left top, left bottom, from(#606c88), to(#3f4c6b));
+            color: rgba(229, 237, 255, 1.0);
+            text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
+            font-size: 17px;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        .swiper-container .title {
+            text-align: center;
+            color: #ffffff;
+            font-size: 24px;
+        }
+
+        /* .btn {
+            position: relative;
+            left: 50%;
+        } */
+
+        .img-title input {
+            display: none;
         }
     </style>
+
     <title>Document</title>
 </head>
 
 <body>
     <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-            <div class="swiper-slide">Slide 5</div>
-            <div class="swiper-slide">Slide 6</div>
-            <div class="swiper-slide">Slide 7</div>
-            <div class="swiper-slide">Slide 8</div>
+        <div class="title">
+            <span id="title_div">标题</span>
         </div>
-        <!-- 如果需要分页器 -->
-        <div class="swiper-pagination"></div>
+        <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide">
+                <div class="img-content">
+                    <img src="" alt="">
+                    <div class="img-title">
+                        <span>图片标题标片题标题1图片标</span>
+                        <input id="vote" type="button" value="投票">
+                    </div>
+                </div>
+            </div> -->
 
-        <!-- 如果需要导航按钮 -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+            <div class="swiper-slide">
+                <div class="img-content">
+                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    <div class="img-title">
+                        <span>图片标题标片题标题1图片标</span>
+                        <label for="a-1">投票
+                            <input id="a-1" type="button" value="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="img-content">
+                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    <div class="img-title">
+                        <span>图片标题标片题标题1图片标</span>
+                        <label for="a-1">投票
+                            <input id="a-1" type="button" value="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="img-content">
+                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    <div class="img-title">
+                        <span>图片标题标片题标题1图片标</span>
+                        <label for="a-1">投票
+                            <input id="a-1" type="button" value="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="img-content">
+                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    <div class="img-title">
+                        <span>图片标题标片题标题1图片标</span>
+                        <label for="a-1">投票
+                            <input id="a-1" type="button" value="">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="img-content">
+                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    <div class="img-title">
+                        <span>图片标题标片题标题1图片标</span>
+                        <label for="a-1">投票
+                            <input id="a-1" type="button" value="">
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-        <!-- 如果需要滚动条 -->
-        <div class="swiper-scrollbar"></div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
+        </div>
     </div>
+    <div class="btn">
+        <input type="button" id="btn1" value="显示当前index">
+    </div>
+    <script>
+
+
+    </script>
 </body>
 
 </html>
 <script>
-    var mySwiper = new Swiper('.swiper-container', {
-        autoplay: true,
-        loop: true,
+    //投票数据事件
+    function vote(event) {
+        let id = $(event).attr('value')
 
-        slidesPerView: 2,
-        slidesPerColumn: 2,
-        spaceBetween: 30,
+        $.ajax({
+            url: "http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/saveadd",
+            method: "POST",
+            data: {
+                'imgid': id
+            },
+            success: function (res) {
+                console.log('success' + res)
+            },
+            error: function (e) {
+                console.log('error' + e)
+            }
+        })
 
-        pagination: {
-            el: '.swiper-pagination',
+
+    }
+    $.ajax({
+        url: 'http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/Imagelist',
+        method: "GET",
+        dataType: "json",
+        success: function (res) {
+            // console.log(res.msg)
+            if (res.code == 1) {
+                $.each(res.msg, function (index, val) {
+                    // console.log(val)
+                    let base_url = "http://hplqytest.suoluomei.cn"
+                    let data_img = `<div class="swiper-slide">
+                        <div class="img-content">
+                            <img src="${base_url}${val.img_url}" alt="">
+                            <div class="img-title">
+                                <span>${val.img_name}</span>
+                                <label for="${val.id}">投票
+                                    <input id="${val.id}" type="button" onclick="vote(this);" value="${val.id}"></input>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+            `
+                    // console.log(data_img)
+                    $('.swiper-wrapper').append(data_img)
+
+                })
+
+                let mySwiper = new Swiper('.swiper-container', {
+                    autoplay: false,
+                    // loop: true,
+
+                    slidesPerView: 2,       //设置slider容器能够同时显示的slides数量(carousel模式)。
+                    slidesPerGroup: 2,      //在carousel mode下定义slides的数量多少为一组。
+                    spaceBetween: 20,       //在slide之间设置距离（单位px）左右图片的距离
+                    slidesPerColumn: 2,     //多行布局里面每列的slide数量
+
+                    slidesPerColumnFill: 'column',
+                    slidesOffsetAfter: 4,
+
+
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    },
+
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
+                    },
+                    on: {
+                        slideChange: function (event) {
+                            $('#title_div').text(mySwiper.activeIndex)
+                            //你的事件
+                        },
+                    },
+                })
+
+                $('#btn1').click(function () {
+                    alert(mySwiper.activeIndex);
+                })
+
+
+                $(mySwiper).on('touchEnd', function () {
+                    alert(1)
+                    alert(mySwiper)
+                })
+            }
+
         },
+        error: function () {
 
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-
-        scrollbar: {
-            el: '.swiper-scrollbar',
         }
     })
+
 </script>
