@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/swiper.css">
+    <link rel="stylesheet" href="./css/hwLayer.css">
+    <link rel="stylesheet" href="./css/custom.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="./js/swiper.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            background-image: url('./images/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* 拉伸 */
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="title">
+            <span id="title_div">最性感魅惑</span>
+        </div>
+        <div class="swiper-wrapper">
+
+        </div>
+
+    </div>
+
+    <!-- 如果需要分页器 -->
+    <!-- <div class="swiper-pagination"></div> -->
+
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev swiper-button-white" id="btn-prev"></div>
+    <div class="swiper-button-next swiper-button-white" id="btn-next"></div>
+
+    <!-- 如果需要滚动条 -->
+    <div class="swiper-scrollbar"></div>
+    </div>
+
+    <!-- 显示当前已投票数据 -->
+    <div class="show-ote">
+
+    </div>
+
+    <div class="row main">
+        <div class="col-md-12">
+
+            <div class="optlist">
+                <a class="btn btn-info btn-lg show-layer" data-show-layer="hw-layer" role="button" style="display:none;">点击弹出层</a>
+            </div>
+
+            <div class="hw-overlay" id="hw-layer">
+                <div class="hw-layer-wrap">
+                    <span class="glyphicon glyphicon-remove hwLayer-close"></span>
+                    <div class="row">
+                        <img class="layer-img" id="show-img" src="" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    $.ajax({
+        url: 'http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/Imagelist',
+        method: "GET",
+        dataType: "json",
+        success: function (res) {
+            // console.log(res.msg)
+            if (res.code == 1) {
+                $.each(res.msg, function (index, val) {
+                    let base_url = "http://hplqytest.suoluomei.cn"
+                    let img_type = val.type
+                    let img_url = base_url + val.img_url
+                    let data_img = `<div class="swiper-slide">
+                        <div class="img-content">
+                            <a class="show-layer" data-show-layer="hw-layer" role="button">
+                                <img class="list-img"  src="${img_url}" alt="">
+                            </a>
+                            <div class="img-title">
+                                <span>${val.img_name}</span>
+                                <label for="${val.id}" id="label${val.id}"><a>投票</a>
+                                    <input id="${val.id}" type="radio" name=${val.type} value="${val.id}"></input>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+            `
+                    for (let i = 0; i < 5; i++) {
+                        $('.swiper-wrapper').append(data_img)
+                    }
+
+
+
+                })
+
+                let mySwiper = new Swiper('.swiper-container', {
+                    autoplay: false,
+                    width: 600,             //swiper宽度
+                    // loop: true,
+                    // type: 'fraction',
+
+                    slidesPerView: 2,       //设置slider容器能够同时显示的slides数量(carousel模式)。
+                    slidesPerGroup: 2,      //在carousel mode下定义slides的数量多少为一组。
+                    spaceBetween: 20,       //在slide之间设置距离（单位px）左右图片的距离
+                    slidesPerColumn: 2,     //多行布局里面每列的slide数量
+
+                    slidesPerColumnFill: 'column',
+                    slidesOffsetAfter: 4,
+
+                    // effect : 'coverflow',   //切换效果
+
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
+                    },
+                    on: {
+                        slideChange: function (event) {
+                            // $('#title_div').text(mySwiper.activeIndex)
+                            let type_arr = ['最性感魅惑', '最逗比搞怪', '最呆萌可人', '最具创意', '最佳姿势']  //1最性感魅惑  2最逗比搞怪 3最呆萌可人 4最具创意 5最佳姿势
+                            $('#title_div').text(type_arr[mySwiper.activeIndex / 2])
+                        },
+                    },
+                })
+
+            } else {
+                console.log('拿不到数据')
+            }
+
+            //投票数据事件
+            $('input').on('click', function () {
+                let id = $(this).attr('value')
+                let label = $(this).parent()
+                label.css('background', '#ccc')
+                label.children('a').html('已投')
+                $(this).attr('disabled', true)
+                // let type_name = $(this).attr('name')
+                // $(this).siblings().select(type_name)
+
+                $.ajax({
+                    url: "http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/saveadd",
+                    method: "GET",
+                    data: {
+                        'imgid': id
+                    },
+                    success: function (res) {
+                        console.log('success' + res)
+                    },
+                    error: function (e) {
+                        console.log('error' + e)
+                    }
+                })
+            })
+
+            // 绑定弹出图片事件
+            //屏幕居中
+            $('.list-img').on('click', function (img) {
+                // let img_src = img.currentTarget.currentSrc
+                $('#show-img').attr('src', img.currentTarget.currentSrc)
+                // console.log(img.currentTarget.currentSrc)
+            })
+            $(function () {
+                //展示层
+                function showLayer(id) {
+                    var layer = $('#' + id),
+                        layerwrap = layer.find('.hw-layer-wrap');
+                    layer.fadeIn();
+
+                }
+
+                //隐藏层
+                function hideLayer() {
+                    $('.hw-overlay').fadeOut();
+                }
+
+                $('.hwLayer-ok,.hwLayer-cancel,.hwLayer-close').on('click', function () {
+                    hideLayer();
+                });
+
+                //触发弹出层
+                $('.show-layer').on('click', function () {
+                    var layerid = $(this).data('show-layer');
+                    showLayer(layerid);
+                });
+
+                //点击或者触控弹出层外的半透明遮罩层，关闭弹出层
+                $('.hw-overlay').on('click', function (event) {
+                    if (event.target == this) {
+                        hideLayer();
+                    }
+                });
+
+                //按ESC键关闭弹出层
+                $(document).keyup(function (event) {
+                    if (event.keyCode == 27) {
+                        hideLayer();
+                    }
+                });
+            });
+
+        },
+        error: function (e) {
+            console.log('没有图片数据', e)
+        }
+    })
+
+
+
+</script>

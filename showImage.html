@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/swiper.css">
+    <link rel="stylesheet" href="./css/hwLayer.css">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script src="./js/swiper.js"></script>
+    <title>Document</title>
     <style>
         body {
+            margin: 0;
             background-image: url('./images/background.jpg');
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -23,10 +26,12 @@
             margin-top: 50px;
             width: 600px;
             height: 600px;
+            padding: 50px;
         }
 
         .swiper-wrapper {
             position: relative;
+            max-height: 0;
         }
 
         .swiper-slide {
@@ -46,14 +51,14 @@
             font-size: 14px;
             color: #ffffff;
             height: 230px;
-            /* top: 10px;
-            bottom: 0; */
         }
 
         .swiper-slide .img-title {
             position: absolute;
             display: flex;
             width: 290px;
+            max-height: 62px;
+            box-sizing: border-box;
             padding: 8px 0;
             justify-content: space-between;
             background-color: rgba(0, 0, 0, .5);
@@ -69,6 +74,7 @@
         .swiper-slide span {
             font-size: 14px;
             left: 5px;
+            box-sizing: border-box;
             padding: 2px 23px;
         }
 
@@ -79,7 +85,7 @@
             margin-right: 10px;
             border-radius: 15%;
             border: 1px solid #858fa6;
-            background: -webkit-gradient(linear, left top, left bottom, from(#606c88), to(#3f4c6b));
+            background: -webkit-gradient(linear, left top, left bottom, from(#606c88), to(#0e4ee8));
             color: rgba(229, 237, 255, 1.0);
             text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
             font-size: 17px;
@@ -94,37 +100,45 @@
         }
 
         /* .btn {
-            position: relative;
-            left: 50%;
-        } */
+                position: relative;
+                left: 50%;
+            } */
 
         .img-title input {
             display: none;
         }
-    </style>
 
-    <title>Document</title>
+        .selected-btn {
+            background-color: crimson;
+        }
+    </style>
 </head>
 
 <body>
     <div class="swiper-container">
         <div class="title">
-            <span id="title_div">标题</span>
+            <span id="title_div">最性感魅惑</span>
         </div>
         <div class="swiper-wrapper">
-            <!-- <div class="swiper-slide">
-                <div class="img-content">
-                    <img src="" alt="">
-                    <div class="img-title">
-                        <span>图片标题标片题标题1图片标</span>
-                        <input id="vote" type="button" value="投票">
-                    </div>
-                </div>
-            </div> -->
 
+            <div class="swiper-slide window">
+                <div class="img-content cloes-tag">
+                    <a class="show-layer" data-show-layer="hw-layer" role="button">
+                        <img class="list-img" src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    </a>
+                    <div class="img-limit">
+                        <div class="img-title">
+                            <span>图片标题标片题标题1图片标标题片标标题标片题标题1图片标</span>
+                            <label for="a-1">投票
+                                <input id="a-1" type="button" value="">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="swiper-slide">
                 <div class="img-content">
-                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    <img class="list-img" src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
                     <div class="img-title">
                         <span>图片标题标片题标题1图片标</span>
                         <label for="a-1">投票
@@ -135,7 +149,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="img-content">
-                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    <img class="list-img" src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
                     <div class="img-title">
                         <span>图片标题标片题标题1图片标</span>
                         <label for="a-1">投票
@@ -146,18 +160,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="img-content">
-                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
-                    <div class="img-title">
-                        <span>图片标题标片题标题1图片标</span>
-                        <label for="a-1">投票
-                            <input id="a-1" type="button" value="">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="img-content">
-                    <img src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
+                    <img class="list-img" src="http://hplqytest.suoluomei.cn/Public/uploads/20180319/5aaf834cdf890.jpg" alt="">
                     <div class="img-title">
                         <span>图片标题标片题标题1图片标</span>
                         <label for="a-1">投票
@@ -178,39 +181,62 @@
                 </div>
             </div>
 
-            <!-- 如果需要分页器 -->
-            <div class="swiper-pagination"></div>
 
-            <!-- 如果需要导航按钮 -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
 
-            <!-- 如果需要滚动条 -->
-            <div class="swiper-scrollbar"></div>
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <div class="row main">
+        <div class="col-md-12">
+
+            <div class="optlist">
+                <a class="btn btn-info btn-lg show-layer" data-show-layer="hw-layer" role="button" style="display:none;">点击弹出层</a>
+            </div>
+
+            <div class="hw-overlay" id="hw-layer">
+                <div class="hw-layer-wrap">
+                    <span class="glyphicon glyphicon-remove hwLayer-close"></span>
+                    <div class="row">
+                        <img class="layer-img" id="show-img" src="" />
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div class="btn">
-        <input type="button" id="btn1" value="显示当前index">
-    </div>
-    <script>
 
-
-    </script>
 </body>
 
 </html>
 <script>
+
+
     //投票数据事件
     function vote(event) {
         let id = $(event).attr('value')
+        $(event).attr('class', 'selected-btn')
+        $(event).css({ "cursor": "auto", "disabled": "disabled" })
+        $(event).attr('disabled', true)
+        $(event).css('background', '#ccc')
+        // $(event).siblings().css.not('background', 'red');
+        // console.log($(event).siblings)
 
         $.ajax({
             url: "http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/saveadd",
-            method: "POST",
+            method: "GET",
             data: {
                 'imgid': id
             },
             success: function (res) {
+                alert('投票成功')
                 console.log('success' + res)
             },
             error: function (e) {
@@ -220,6 +246,7 @@
 
 
     }
+
     $.ajax({
         url: 'http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/Imagelist',
         method: "GET",
@@ -230,13 +257,16 @@
                 $.each(res.msg, function (index, val) {
                     // console.log(val)
                     let base_url = "http://hplqytest.suoluomei.cn"
+                    let img_type = val.type
                     let data_img = `<div class="swiper-slide">
                         <div class="img-content">
-                            <img src="${base_url}${val.img_url}" alt="">
+                            <a class="show-layer" data-show-layer="hw-layer" role="button">
+                                <img class="list-img"  src="${base_url}${val.img_url}" alt="">
+                            </a>
                             <div class="img-title">
                                 <span>${val.img_name}</span>
                                 <label for="${val.id}">投票
-                                    <input id="${val.id}" type="button" onclick="vote(this);" value="${val.id}"></input>
+                                    <input id="${val.id}" type="radio" name=${val.type} onclick="vote(this);" value="${val.id}"></input>
                                 </label>
                             </div>
                         </div>
@@ -249,7 +279,9 @@
 
                 let mySwiper = new Swiper('.swiper-container', {
                     autoplay: false,
+                    width: 600,             //swiper宽度
                     // loop: true,
+                    // type: 'fraction',
 
                     slidesPerView: 2,       //设置slider容器能够同时显示的slides数量(carousel模式)。
                     slidesPerGroup: 2,      //在carousel mode下定义slides的数量多少为一组。
@@ -259,14 +291,15 @@
                     slidesPerColumnFill: 'column',
                     slidesOffsetAfter: 4,
 
+                    // effect : 'coverflow',   //切换效果
 
                     pagination: {
                         el: '.swiper-pagination',
                     },
 
                     navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev'
+                        nextEl: '.swiper-button-next.swiper-button-white',
+                        prevEl: '.swiper-button-prev.swiper-button-white',
                     },
 
                     scrollbar: {
@@ -274,27 +307,69 @@
                     },
                     on: {
                         slideChange: function (event) {
-                            $('#title_div').text(mySwiper.activeIndex)
-                            //你的事件
+                            // $('#title_div').text(mySwiper.activeIndex)
+                            let type_arr = ['最性感魅惑', '最逗比搞怪', '最呆萌可人', '最具创意', '最佳姿势']  //1最性感魅惑  2最逗比搞怪 3最呆萌可人 4最具创意 5最佳姿势
+                            $('#title_div').text(type_arr[mySwiper.activeIndex / 2])
                         },
                     },
                 })
 
-                $('#btn1').click(function () {
-                    alert(mySwiper.activeIndex);
-                })
-
-
-                $(mySwiper).on('touchEnd', function () {
-                    alert(1)
-                    alert(mySwiper)
-                })
+            } else {
+                console.log('拿不到数据')
             }
 
-        },
-        error: function () {
+            // 绑定弹出图片事件
+            $(function () {
+                //展示层
+                function showLayer(id) {
+                    var layer = $('#' + id),
+                        layerwrap = layer.find('.hw-layer-wrap');
+                    layer.fadeIn();
+                    //屏幕居中
+                    $('.list-img').on('click', function (img) {
+                        // console.log($(this))
+                        // let img_src = img.currentTarget.currentSrc
+                        $('#show-img').attr('src', img.currentTarget.currentSrc)
+                        console.log(img.currentTarget.currentSrc)
+                    })
+                }
 
+                //隐藏层
+                function hideLayer() {
+                    $('.hw-overlay').fadeOut();
+                }
+
+                $('.hwLayer-ok,.hwLayer-cancel,.hwLayer-close').on('click', function () {
+                    hideLayer();
+                });
+
+                //触发弹出层
+                $('.show-layer').on('click', function () {
+                    var layerid = $(this).data('show-layer');
+                    showLayer(layerid);
+                });
+
+                //点击或者触控弹出层外的半透明遮罩层，关闭弹出层
+                $('.hw-overlay').on('click', function (event) {
+                    if (event.target == this) {
+                        hideLayer();
+                    }
+                });
+
+                //按ESC键关闭弹出层
+                $(document).keyup(function (event) {
+                    if (event.keyCode == 27) {
+                        hideLayer();
+                    }
+                });
+            });
+
+        },
+        error: function (e) {
+            console.log('没有图片数据', e)
         }
     })
+
+
 
 </script>
