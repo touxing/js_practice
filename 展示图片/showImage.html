@@ -17,8 +17,8 @@
             background-image: url('./images/background.jpg');
             background-repeat: no-repeat;
             background-attachment: fixed;
-            /* 拉伸 */
             background-size: cover;
+            /* 拉伸 */
             width: 100%;
             height: 100%;
         }
@@ -26,32 +26,36 @@
 </head>
 
 <body>
-    <div class="swiper-container">
-        <div class="title">
-            <span id="title_div">最性感魅惑</span>
+    <div class="nav">
+
+        <div class="swiper-container">
+            <div class="title">
+                <span id="title_div">最性感魅惑</span>
+            </div>
+            <div class="swiper-wrapper">
+            </div>
+
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
         </div>
-        <div class="swiper-wrapper">
 
+
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev swiper-button-white" id="btn-prev"></div>
+        <div class="swiper-button-next swiper-button-white" id="btn-next"></div>
+
+
+
+
+        <!-- 显示当前已投票数据 -->
+        <div class="show-ote"></div>
+        <div class="tips">
+            <span>点击图片可原图预览</span>
         </div>
-
     </div>
-
-    <!-- 如果需要分页器 -->
-    <!-- <div class="swiper-pagination"></div> -->
-
-    <!-- 如果需要导航按钮 -->
-    <div class="swiper-button-prev swiper-button-white" id="btn-prev"></div>
-    <div class="swiper-button-next swiper-button-white" id="btn-next"></div>
-
-    <!-- 如果需要滚动条 -->
-    <div class="swiper-scrollbar"></div>
-    </div>
-
-    <!-- 显示当前已投票数据 -->
-    <div class="show-ote">
-
-    </div>
-
     <div class="row main">
         <div class="col-md-12">
 
@@ -110,8 +114,7 @@
                 })
 
                 let mySwiper = new Swiper('.swiper-container', {
-                    autoplay: false,
-                    width: 600,             //swiper宽度
+                    autoplay: false,        //自动播放
                     // loop: true,
                     // type: 'fraction',
 
@@ -157,8 +160,6 @@
                 label.css('background', '#ccc')
                 label.children('a').html('已投')
                 $(this).attr('disabled', true)
-                // let type_name = $(this).attr('name')
-                // $(this).siblings().select(type_name)
 
                 $.ajax({
                     url: "http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/saveadd",
@@ -175,7 +176,7 @@
                 })
             })
 
-            // 绑定弹出图片事件
+            /* 绑定弹出图片事件 */
             //屏幕居中
             $('.list-img').on('click', function (img) {
                 // let img_src = img.currentTarget.currentSrc
