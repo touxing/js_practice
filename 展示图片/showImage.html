@@ -81,7 +81,8 @@
 <script>
 
     $.ajax({
-        url: 'http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/Imagelist',
+        // url: 'http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/Imagelist',  //测试地址
+        url: 'http://hplqy.suoluomei.com/index.php?s=/Admin/ImageSelection/saveadd',     //正式地址
         method: "GET",
         dataType: "json",
         success: function (res) {
@@ -97,17 +98,20 @@
                                 <img class="list-img"  src="${img_url}" alt="">
                             </a>
                             <div class="img-title">
-                                <span>${val.img_name}</span>
+                                <span>${val.img_desc}</span>
                                 <label for="${val.id}" id="label${val.id}"><a>投票</a>
                                     <input id="${val.id}" type="radio" name=${val.type} value="${val.id}"></input>
                                 </label>
                             </div>
                         </div>
                     </div>
-            `
-                    for (let i = 0; i < 5; i++) {
-                        $('.swiper-wrapper').append(data_img)
-                    }
+                `
+
+                /* 测试数据，正式数据去掉循环 */
+                    // for (let i = 0; i < 5; i++) {
+                    //     $('.swiper-wrapper').append(data_img)
+                    // }
+                    $('.swiper-wrapper').append(data_img)
 
 
 
@@ -153,7 +157,7 @@
                 console.log('拿不到数据')
             }
 
-            //投票数据事件
+            //投票事件，限制每类只能投一票
             $('input').on('click', function () {
                 let id = $(this).attr('value')
                 let label = $(this).parent()
