@@ -10,7 +10,6 @@
 <body>
     <script>
         let ajax = $.ajax({url:"data.txt"})
-        console.log(ajax)
         Promise.all([
             $.ajax({url:"https://cdn.bootcss.com/jquery/3.3.1/jquery.js"}),
             $.ajax({url:"data.json"})

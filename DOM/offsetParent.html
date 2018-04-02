@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div1 {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: coral;
+            margin: 100px;
+        }
+
+        .div2 {
+            position: absolute;      
+            width: 100px;
+            height: 100px;
+            background: gray;
+            left: 50px;
+            top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <div class="div2"></div>
+    </div>
+    <input type="text" id="txt1">
+    <input id="btn1" type="button" value="按钮">
+    <script>
+        window.onload = function(){
+            var div2 = document.getElementsByClassName('div2')
+            console.log(div2)
+
+            let txt = document.getElementById('txt1')
+            let btn = document.getElementById('btn1')
+
+            btn.onclick=function(){
+                // txt.value = '.设置值'        
+                // txt['value'] = '方括号设置'
+                txt.setAttribute('value', 'setAttribute设置取值')
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
