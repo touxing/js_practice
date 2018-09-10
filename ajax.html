@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>原生ajax</title>
+</head>
+
+<body>
+  <input class="btn" type="button" value="按钮">
+  <script>
+    window.onload = function () {
+      var oBtn = document.getElementsByClassName('btn')[0];
+      oBtn.onclick = function () {
+        ajax('data.json', function (res) {
+          alert(res);
+        }, function (err) {
+          alert(err);
+        })
+      }
+
+      // 封装ajax
+      function ajax(url, fnSuccess, fnFailed, type = 'GET', isAsync = true) {
+        // 1.创建Ajax对象
+        if (window.XMLHttpRequest) {
+          var oAjax = new XMLHttpRequest();
+        } else {
+          var oAjax = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        // 2.链接服务器
+        // open("方法", "url", 异步传输)
+        oAjax.open(type, url, isAsync);
+        // 3.发送请求
+        oAjax.send();
+        // 4.接受返回值
+        oAjax.onreadystatechange = function () {
+          if (oAjax.readyState == 4) {
+            if (oAjax.status == 200) {
+              fnSuccess(oAjax.responseText);
+            } else {
+              fnFailed(oAjax.status + oAjax.statusText);
+            }
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

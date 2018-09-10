@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js事件基础——鼠标小尾巴</title>
+    <style>
+        div {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        function getPos(ev) {
+            var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            
+            
+            return {
+                x: ev.clientX + scrollLeft,
+                y: ev.clientY + scrollTop
+            }
+        }
+
+        document.onmousemove = function(ev){
+            var aDiv = document.getElementsByTagName('div')
+            var oEvent = ev || event;
+
+            var pos = getPos(ev)
+            console.log(pos)
+
+            for(var i = aDiv.length-1; i > 0; i--) {
+                aDiv[i].style.left = aDiv[i-1].offsetLeft + 'px';
+                aDiv[i].style.top = aDiv[i-1].offsetTop + 'px';
+            }
+
+            aDiv[0].style.left = pos.x + 'px';
+            aDiv[0].style.top = pos.y + 'px';
+        }
+    </script>
+</body>
+</html>
