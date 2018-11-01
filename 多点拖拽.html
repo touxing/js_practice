@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      overflow: auto;
+    }
+
+    .container {
+      height: 62.5rem;
+      overflow-y: scroll;
+    }
+
+    [class^=box] {
+      position: absolute;
+      width: 6.25rem;
+      height: 6.25rem;
+    }
+
+    .box1 {
+      background: red;
+    }
+
+    .box2 {
+      left: 6.875rem;
+      background: blue;
+    }
+
+    .box3 {
+      left: 7.5rem;
+      top: 10rem;
+      background: gold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+  </div>
+  <script>
+    window.onload = function () {
+      let aBox = document.getElementsByClassName('box')
+
+      Array.from(aBox).forEach((box, index) => {
+        drag(box)
+      })
+
+      function drag(obj) {
+        obj.addEventListener('touchstart', ev => {
+          ev.preventDefault()
+          let disX = ev.targetTouches[0].pageX - obj.offsetLeft
+          let disY = ev.targetTouches[0].pageY - obj.offsetTop
+
+          let identifier = ev.targetTouches[0].identifier
+
+          function fnMove(ev) {
+            ev.preventDefault()
+            obj.style.left = ev.targetTouches[0].pageX - disX + 'px'
+            obj.style.top = ev.targetTouches[0].pageY - disY + 'px'
+          }
+
+          function fnEnd(ev) {
+            let flag = false
+            console.log(ev)
+            Array.from(ev.changedTouches).forEach(touch => {
+              if (touch.identifier == identifier) {
+                found = true
+              }
+            })
+            if (found) {
+              obj.removeEventListener('touchmove', fnMove, false)
+              obj.removeEventListener('touchend', fnEnd, false)
+            }
+          }
+
+          obj.addEventListener('touchmove', fnMove, false)
+          obj.addEventListener('touchend', fnEnd, false)
+        }, false)
+      }
+    }
+  </script>
+</body>
+
+</html>
