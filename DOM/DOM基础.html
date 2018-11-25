@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="nav">
+        <li>few<a href="javascript:;">隐藏</a></li>
+        <li>we<a href="javascript:;">隐藏</a></li>
+        <li>we2<a href="javascript:;">隐藏</a></li>
+        <li>you<a href="javascript:;">隐藏</a></li>
+        <li>f23frfd<a href="javascript:;">隐藏</a></li>
+    </ul>
+
+    <script>
+        window.onload = function(){
+            let nav = document.getElementsByClassName('nav')
+            console.log(nav)
+            var aA = document.getElementsByTagName("a")     //a用单引号会出错，拿不到数据
+            console.log(aA)
+            for (let i = 0; i<aA.length; i++) {
+                aA[i].onclick = function(){
+                    this.parentNode.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

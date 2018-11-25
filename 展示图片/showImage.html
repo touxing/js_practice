@@ -81,8 +81,8 @@
 <script>
 
     $.ajax({
-        // url: 'http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/Imagelist',  //测试地址
-        url: 'http://hplqy.suoluomei.com/index.php?s=/Admin/ImageSelection/saveadd',     //正式地址
+        url: 'http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/Imagelist',  //测试地址
+        // url: 'http://hplqy.suoluomei.com/index.php?s=/Admin/ImageSelection/Imagelist',     //正式地址
         method: "GET",
         dataType: "json",
         success: function (res) {
@@ -100,7 +100,7 @@
                             <div class="img-title">
                                 <span>${val.img_desc}</span>
                                 <label for="${val.id}" id="label${val.id}"><a>投票</a>
-                                    <input id="${val.id}" type="radio" name=${val.type} value="${val.id}"></input>
+                                    <input id="${val.id}" type="radio" name="type${val.type}" value="${val.id}"></input>
                                 </label>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                 let label = $(this).parent()
                 label.css('background', '#ccc')
                 label.children('a').html('已投')
-                $(this).attr('disabled', true)
+                $(this).siblings($(this).attr('name')).attr('disabled', true)
 
                 $.ajax({
                     url: "http://hplqytest.suoluomei.cn/index.php?s=/Admin/ImageSelection/saveadd",
