@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>rem比例换算响应大小</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    img {
+      border: 0;
+      vertical-align: middle;
+    }
+    .banner li {
+      width: 23.4375rem;
+      height: 6.25rem;
+    }
+    .banner li img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="banner">
+      <li><img src="images/background.jpg" alt=""></li>
+    </div>
+  </main>
+  <script>
+    window.onload = function() {
+      // 响应宽高大小
+      document.documentElement.style.fontSize = 16 * document.documentElement.clientWidth / 375 + 'px';
+    }
+  </script>
+</body>
+</html>

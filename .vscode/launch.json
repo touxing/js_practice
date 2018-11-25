@@ -6,13 +6,6 @@
   "configurations": [
     {
       "type": "chrome",
-      "request": "attach",
-      "name": "Attach to Chrome",
-      "port": 9222,
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "type": "chrome",
       "request": "launch",
       "name": "启动 Chrome 并打开 localhost",
       // "url": "${workspaceFolder}", //本地文件的方式打开

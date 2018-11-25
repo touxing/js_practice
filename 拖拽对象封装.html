@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>拖拽</title>
+  <style>
+    #div1 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      background-color: yellowgreen;
+    }
+
+    #div2 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: 200px;
+      line-height: 100px;
+      text-align: center;
+      background-color: coral;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1">普通拖拽</div>
+  <div id="div2">限制范围</div>
+  <script>
+    // 面向过程拖拽
+    // window.onload = function () {
+    //   var oDiv = document.getElementById('div1')
+
+    //   oDiv.onmousedown = function (ev) {
+    //     var evt = ev || event
+
+    //     var disX = evt.clientX - oDiv.offsetLeft
+    //     var disY = evt.clientY - oDiv.offsetTop
+
+    //     document.onmousemove = function (ev) {
+    //       var evt = ev || event
+
+    //       oDiv.style.left = evt.clientX - disX + 'px'
+    //       oDiv.style.top = evt.clientY - disY + 'px'
+    //     }
+
+    //     document.onmouseup = function () {
+    //       document.onmousemove = null
+    //       document.onmouseup = null
+    //     }
+    //   }
+    // }
+
+    window.onload = function () {
+      new Drag('div1')
+      new LimitDrag('div2')
+    }
+
+
+
+    // 1.构造函数
+    function Drag(id) {
+      var _this = this
+      this.disX = 0
+      this.disY = 0
+
+      this.oDiv = document.getElementById(id)
+
+      this.oDiv.onmousedown = function (ev) {
+        console.log(ev)
+        _this.fnDown(ev)
+        return false
+      }
+
+    }
+
+    Drag.prototype.fnDown = function (ev) {
+      var _this = this
+      var evt = ev || event
+
+      this.disX = evt.clientX - this.oDiv.offsetLeft
+      this.disY = evt.clientY - this.oDiv.offsetTop
+
+      document.onmousemove = function (ev) {
+        _this.fnMove(ev)
+      }
+
+      document.onmouseup = function () {
+        _this.fnUp()
+      }
+    }
+
+    Drag.prototype.fnMove = function (ev) {
+      var evt = ev || event
+
+      this.oDiv.style.left = evt.clientX - this.disX + 'px'
+      this.oDiv.style.top = evt.clientY - this.disY + 'px'
+    }
+
+    Drag.prototype.fnUp = function () {
+      document.onmousemove = null
+      document.onmouseup = null
+    }
+
+    // 继承
+    function LimitDrag(id) {
+      Drag.call(this, id)
+    }
+
+    for (var i in Drag.prototype) {
+      LimitDrag.prototype[i] = Drag.prototype[i]
+    }
+    console.log(LimitDrag.prototype)
+
+    LimitDrag.prototype.fnMove = function (ev) {
+      var evt = ev || event
+
+      var L = evt.clientX - this.disX
+      var T = evt.clientY - this.disY
+
+      if (L < 0) {
+        L = 0;
+      } else if (L > document.documentElement.clientWidth - this.oDiv.offsetWidth) {
+        L = document.documentElement.clientWidth - this.oDiv.offsetWidth
+      }
+      if (T < 0) {
+        T = 0
+      } else if (T > document.documentElement.clientHeight - this.oDiv.offsetHeight) {
+        T = document.documentElement.clientHeight - this.oDiv.offsetHeight
+      }
+
+      this.oDiv.style.left = L + 'px'
+      this.oDiv.style.top = T + 'px'
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('success++');
+            }, 0);
+        }).then((msg) => {
+            console.log('msg---', msg)
+            return msg
+        }, error => {
+            return error
+        }).then((msg2) => {
+            console.log('msg2---', msg2);
+        }, error => {
+            console.log('error2', error)
+        });
+
+        let p = new Promise(function (resolve, reject) {
+            resolve('1.5')
+            setTimeout(function () {
+                let num = Math.random()
+                if (num > 0.5) {
+                    resolve(num)
+                } else {
+                    reject(num)
+                }
+            }, 1000)
+        })
+        p.then(function (num) {
+            console.log('大于0.5的数字：', num)
+            // return num
+        }, function (num) {
+            console.log('小于等于0.5的数字', num)
+            return num
+        }).then(
+            console.log('haha')
+        )
+    </script>
+</body>
+
+</html>
