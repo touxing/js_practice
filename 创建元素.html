@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="txt1">
+    <input type="button" value="创建" id="btn1">
+    <ul id="ull"></ul>
+    <script>
+        window.onload = function(){
+            let txt1 = document.getElementById('txt1')
+            let btn1 = document.getElementById('btn1')
+            let oUl = document.getElementById('ull')
+            let aLi = document.getElementsByTagName('li')
+
+            btn1.onclick = function(){
+                let oLi = document.createElement('li')
+                oLi.innerHTML = txt1.value
+                //父级.appendChild(子节点)
+                // oUl.appendChild(oLi)
+                //父级.insertBefore(子节点, 在谁之前)
+                oUl.insertBefore(oLi, aLi[0])
+            }
+        }
+    </script>
+</body>
+</html>

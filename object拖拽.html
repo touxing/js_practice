@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style lang="css">
+    #div1 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <script>
+    // 面向对象封装
+    window.onload = function () {
+      new Drag('div1');
+    }
+
+    function Drag(id) {
+      var _this = this;
+      this.disX = 0;
+      this.disY = 0;
+      this.oDiv = document.getElementById(id);
+
+      this.oDiv.onmousedown = function (ev) {
+        _this.fnDown(ev);
+      }
+    }
+
+    Drag.prototype.fnDown = function (ev) {
+      var _this = this;
+      var oEvent = ev || event;
+      this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+      this.disY = oEvent.clientY - this.oDiv.offsetTop;
+
+      document.onmousemove = function (ev) {
+        _this.fnMove()
+      };
+      document.onmouseup = function (ev) {
+        console.log(_this);
+        _this.fnUp();
+      }
+    }
+
+    Drag.prototype.fnMove = function (ev) {
+      var oEvent = ev || event;
+
+      this.oDiv.style.left = oEvent.clientX - this.disX + 'px';
+      this.oDiv.style.top = oEvent.clientY - this.disY + 'px';
+    }
+
+    Drag.prototype.fnUp = function () {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    }
+    // window.onload = function () {
+    //   var oDiv = document.getElementById('div1');
+    //   oDiv.onmousedown = function (ev) {
+    //     var oEvent = ev || event;
+
+    //     var disX = oEvent.clientX - oDiv.offsetLeft;
+    //     var disY = oEvent.clientY - oDiv.offsetTop;
+
+    //     document.onmousemove = function (ev) {
+    //       var oEvent = ev || event;
+
+    //       oDiv.style.left = oEvent.clientX - disX + 'px';
+    //       oDiv.style.top = oEvent.clientY - disY + 'px';
+
+    //       console.log(oDiv.style.left);
+    //     }
+
+    //     document.onmouseup = function () {
+    //       document.onmousemove = null;
+    //       document.onmouseup = null;
+    //     }
+    //   }
+    // }
+  </script>
+</body>
+
+</html>
