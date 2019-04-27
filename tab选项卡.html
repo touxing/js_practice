@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>实现tab选项卡</title>
+    <style>
+      #div1 input {
+        background-color: white;
+      }
+      #div1 input.active {
+        background-color: #ddd;
+      }
+      #div1 div {
+        width: 200px;
+        height: 200px;
+        background-color: #ccc;
+        display: none;
+      }
+      #div1 div:first-of-type {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      <input class="active" type="button" value="tab1" />
+      <input type="button" value="tab2" />
+      <input type="button" value="tab3" />
+      <div>
+        tab1
+      </div>
+      <div>
+        tab2
+      </div>
+      <div>
+        tab3
+      </div>
+    </div>
+    <script>
+      window.onload = function() {
+        var oDiv = document.getElementById('div1')
+        var aBtn = oDiv.getElementsByTagName('input')
+        var aDiv = oDiv.getElementsByTagName('div')
+
+        for (var i = 0; i < aBtn.length; i++) {
+          aBtn[i].index = i
+          aBtn[i].onclick = function() {
+            for (var j = 0; j < aBtn.length; j++) {
+              aBtn[j].className = ''
+              aDiv[j].style.display = 'none'
+            }
+            this.className = 'active'
+
+            console.log(i) // ?? 为什么只会输出3
+            console.log(j)
+            aDiv[this.index].style.display = 'block'
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
